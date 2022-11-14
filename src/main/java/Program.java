@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Program {
-    public Program() {
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int jmlInput, pilMenu;
         double tempDouble;
@@ -24,15 +24,15 @@ public class Program {
         //    System.out.println();
         //}
         System.out.println("Inisialisasi data berhasil!");
-        String[][] dataID = { { "01", "Ghazali Ahlam Jazali", "5" }, { "02", "Heksaloga", "6" }, { "03", "Yohanes Maria", "10" } };
-        double[][] dataGaji = { { 10000000.0, 150000.0 }, { 150000000.0, 250000.0 }, { 35000000.0, 245000.0 } };
+        String[][] dataID = { { "01", "Ghazali Ahlam Jazali", "5" }, { "02", "Heksaloga", "6" }, { "03", "Yohanes Maria", "10" }, { "04", "Eren Yeager", "7" }, { "05", "Gimana Coba", "2" } };
+        double[][] dataGaji = { { 10000000.0, 150000.0 }, { 150000000.0, 250000.0 }, { 35000000.0, 245000.0 }, { 45000000.0, 300000.0 }, { 17000000.0, 270000.0 } };
         // walau ini double, kita akan menggunakan primitive int untuk output
 
         while (true) {
             System.out.println("\n<PILIHAN MENU>");
             System.out.println("(1) Daftar karyawan");
             System.out.println("(2) Modifikasi data karyawan");
-            System.out.println("(3) Gaji karyawan");
+            System.out.println("(3) Hitung Gaji karyawan");
             System.out.println("(4) Keluar");
 
             do {
@@ -45,49 +45,56 @@ public class Program {
                 case 1 -> {
                     System.out.println("DAFTAR KARYAWAN");
                     // COUNTING REQUIRED -
-                    int[] columnLength = {0, 0, 0, 0, 0};
+                    int[] dataColSize = {0, 0, 0, 0, 0};
                     int tableLength;
                     String tableSeparator = "";
 
                     // COLUMN LENGTH DATA DIRI
                     for (int i = 0; i < dataID.length; i++) {
                         //TABLE VALUES
-                        if (dataID[i][0].length() > columnLength[0]) { //UUID
-                            columnLength[0] = dataID[i][0].length();
+                        if (dataID[i][0].length() > dataColSize[0]) { //UUID
+                            dataColSize[0] = dataID[i][0].length();
                         }
-                        if (dataID[i][1].length() > columnLength[1]) { //NAME
-                            columnLength[1] = dataID[i][1].length();
+                        if (dataID[i][1].length() > dataColSize[1]) { //NAME
+                            dataColSize[1] = dataID[i][1].length();
                         }
-                        if (dataID[i][2].length() > columnLength[2]) { //GOLO
-                            columnLength[2] = dataID[i][2].length();
+                        if (dataID[i][2].length() > dataColSize[2]) { //GOLO
+                            dataColSize[2] = dataID[i][2].length();
                         }
                     }
                     // COLUMN LENGTH GAJI
                     for (int i = 0; i < dataID.length; i++) {
-                        if (String.valueOf((int) dataGaji[i][0]).length() > columnLength[3]) {
-                            columnLength[3] = String.valueOf((int) dataGaji[i][0]).length();
+                        if (String.valueOf((int) dataGaji[i][0]).length() > dataColSize[3]) {
+                            dataColSize[3] = String.valueOf((int) dataGaji[i][0]).length();
                         }
-                        if (String.valueOf((int) dataGaji[i][1]).length() > columnLength[4]) {
-                            columnLength[4] = String.valueOf((int) dataGaji[i][1]).length();
+                        if (String.valueOf((int) dataGaji[i][1]).length() > dataColSize[4]) {
+                            dataColSize[4] = String.valueOf((int) dataGaji[i][1]).length();
                         }
                     }
 
                     //COMPARING TO TABLE HEADER
                     String[] TABLE_HEADER = {"ID", "NAMA LENGKAP", "GOLONGAN", "GAJI POKOK", "GAJI LEMBUR"};
                     for (int i = 0; i < TABLE_HEADER.length; i++) {
-                        if (TABLE_HEADER[i].length() > columnLength[i]) {
-                            columnLength[i] = TABLE_HEADER[i].length();
+                        if (TABLE_HEADER[i].length() > dataColSize[i]) {
+                            dataColSize[i] = TABLE_HEADER[i].length();
                         }
                     }
 
-                    tableLength = (columnLength.length + 1) + (columnLength[0] + 2) + (columnLength[1] + 2) + (columnLength[2] + 2) + (columnLength[3] + 2) + (columnLength[4] + 2);
+                    System.out.println("max UUID: " + dataColSize[0]);
+                    System.out.println("max NAME: " + dataColSize[1]);
+                    System.out.println("max GOLO: " + dataColSize[2]);
+                    System.out.println("max GAJP: " + dataColSize[3]);
+                    System.out.println("max GAJL: " + dataColSize[4]);
+                    System.out.println();
+
+                    tableLength = (dataColSize.length + 1) + (dataColSize[0] + 2) + (dataColSize[1] + 2) + (dataColSize[2] + 2) + (dataColSize[3] + 2) + (dataColSize[4] + 2);
                     // MEMBUAT SEPARATOR ANTAR DATA KARYAWAN
                     for (int i = 0; i < tableLength; i++) {
                         if (i == 0 || i == tableLength - 1
-                                || i == 3 + columnLength[0]
-                                || i == 3 + columnLength[0] + 3 + columnLength[1]
-                                || i == 3 + columnLength[0] + 3 + columnLength[1] + 3 + columnLength[2]
-                                || i == 3 + columnLength[0] + 3 + columnLength[1] + 3 + columnLength[2] + 3 + columnLength[3]
+                                || i == 3 + dataColSize[0]
+                                || i == 3 + dataColSize[0] + 3 + dataColSize[1]
+                                || i == 3 + dataColSize[0] + 3 + dataColSize[1] + 3 + dataColSize[2]
+                                || i == 3 + dataColSize[0] + 3 + dataColSize[1] + 3 + dataColSize[2] + 3 + dataColSize[3]
                         ) tableSeparator += "+";
                         else tableSeparator += "-";
                     }
@@ -97,9 +104,9 @@ public class Program {
                         if (i >= 0) { //table value builder
                             System.out.print("| ");
                             int c = 0;
-                            for (int k = 0; k < dataID.length; k++) { //columnLength[0 to 2]: ID, NAMA LENGKAP, GOLONGAN
+                            for (int k = 0; k < dataID[i].length; k++) { //dataColSize[0 to 2]: ID, NAMA LENGKAP, GOLONGAN
                                 System.out.print(dataID[i][c]);
-                                for (int j = 0; j < (columnLength[c] - dataID[i][c].length()); j++) {
+                                for (int j = 0; j < (dataColSize[c] - dataID[i][c].length()); j++) {
                                     System.out.print(" ");
                                 }
                                 System.out.print(" | ");
@@ -108,14 +115,14 @@ public class Program {
 
                             //GAJP COLUMN
                             System.out.print((int) dataGaji[i][0]);
-                            for (int j = 0; j < (columnLength[3] - String.valueOf((int) dataGaji[i][0]).length()); j++) {
+                            for (int j = 0; j < (dataColSize[3] - String.valueOf((int) dataGaji[i][0]).length()); j++) {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
-//
+                            
                             //GAJL COLUMN
                             System.out.print((int) dataGaji[i][1]);
-                            for (int j = 0; j < (columnLength[4] - String.valueOf((int) dataGaji[i][1]).length()); j++) {
+                            for (int j = 0; j < (dataColSize[4] - String.valueOf((int) dataGaji[i][1]).length()); j++) {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
@@ -124,7 +131,7 @@ public class Program {
                             for (int b = 0; b < TABLE_HEADER.length; b++) {
                                 if (!(b == 0)) System.out.print(TABLE_HEADER[b]);
                                 else System.out.print("| " + TABLE_HEADER[b]);
-                                for (int j = 0; j < (columnLength[b] - TABLE_HEADER[b].length()); j++) {
+                                for (int j = 0; j < (dataColSize[b] - TABLE_HEADER[b].length()); j++) {
                                     System.out.print(" ");
                                 }
                                 System.out.print(" | ");
@@ -140,8 +147,5 @@ public class Program {
                     System.exit(0);}
             }
         }
-    }
-    public static void main(String[] args) {
-        new Program();
     }
 }
