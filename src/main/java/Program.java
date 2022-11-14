@@ -36,7 +36,8 @@ public class Program {
             System.out.println("(4) Keluar");
 
             do {
-                System.out.print("Masukkan pilihan: "); pilMenu = Integer.parseInt(in.nextLine());
+                System.out.print("Masukkan pilihan: ");
+                pilMenu = Integer.parseInt(in.nextLine());
                 if (!(pilMenu >= 1 && pilMenu <= 4)) System.out.print("Masukkan pilihan yang benar! ");
             } while (!(pilMenu >= 1 && pilMenu <= 4));
 
@@ -79,12 +80,6 @@ public class Program {
                         }
                     }
 
-                    System.out.println("Max UUID -> " + columnLength[0]);
-                    System.out.println("Max NAME -> " + columnLength[1]);
-                    System.out.println("Max GOLO -> " + columnLength[2]);
-                    System.out.println("Max GAJP -> " + columnLength[3]);
-                    System.out.println("Max GAJL -> " + columnLength[4]);
-                    System.out.println();
                     tableLength = (columnLength.length + 1) + (columnLength[0] + 2) + (columnLength[1] + 2) + (columnLength[2] + 2) + (columnLength[3] + 2) + (columnLength[4] + 2);
                     // MEMBUAT SEPARATOR ANTAR DATA KARYAWAN
                     for (int i = 0; i < tableLength; i++) {
@@ -100,8 +95,9 @@ public class Program {
                     System.out.println(tableSeparator);
                     for (int i = -1; i < dataID.length; i++) {
                         if (i >= 0) { //table value builder
+                            System.out.print("| ");
                             //UUID COLUMN
-                            System.out.print("| " + dataID[i][0]);
+                            System.out.print(dataID[i][0]);
                             for (int j = 0; j < (columnLength[0] - dataID[i][0].length()); j++) {
                                 System.out.print(" ");
                             }
@@ -151,8 +147,7 @@ public class Program {
                 case 3 -> System.out.println("Case 3");
                 case 4 -> {
                     System.out.println("Terima kasih telah menggunakan program ini.");
-                    System.exit(0);
-                }
+                    System.exit(0);}
             }
         }
     }
