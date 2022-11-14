@@ -96,26 +96,15 @@ public class Program {
                     for (int i = -1; i < dataID.length; i++) {
                         if (i >= 0) { //table value builder
                             System.out.print("| ");
-                            //UUID COLUMN
-                            System.out.print(dataID[i][0]);
-                            for (int j = 0; j < (columnLength[0] - dataID[i][0].length()); j++) {
-                                System.out.print(" ");
+                            int c = 0;
+                            for (int k = 0; k < dataID.length; k++) {
+                                System.out.print(dataID[i][c]);
+                                for (int j = 0; j < (columnLength[c] - dataID[i][c].length()); j++) {
+                                    System.out.print(" ");
+                                }
+                                System.out.print(" | ");
+                                c++;
                             }
-                            System.out.print(" | ");
-
-                            //NAME COLUMN
-                            System.out.print(dataID[i][1]);
-                            for (int j = 0; j < (columnLength[1] - dataID[i][1].length()); j++) {
-                                System.out.print(" ");
-                            }
-                            System.out.print(" | ");
-
-                            //GOLO COLUMN
-                            System.out.print(dataID[i][2]);
-                            for (int j = 0; j < (columnLength[2] - dataID[i][2].length()); j++) {
-                                System.out.print(" ");
-                            }
-                            System.out.print(" | ");
 
                             //GAJP COLUMN
                             System.out.print((int) dataGaji[i][0]);
@@ -123,14 +112,15 @@ public class Program {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
-
+//
                             //GAJL COLUMN
                             System.out.print((int) dataGaji[i][1]);
                             for (int j = 0; j < (columnLength[4] - String.valueOf((int) dataGaji[i][1]).length()); j++) {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
-                        } else { //table header builder
+                        }
+                        else { //table header builder
                             for (int b = 0; b < TABLE_HEADER.length; b++) {
                                 if (!(b == 0)) System.out.print(TABLE_HEADER[b]);
                                 else System.out.print("| " + TABLE_HEADER[b]);
