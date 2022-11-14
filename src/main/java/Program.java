@@ -24,8 +24,19 @@ public class Program {
         //    System.out.println();
         //}
         System.out.println("Inisialisasi data berhasil!");
-        String[][] dataID = { { "01", "Ghazali Ahlam Jazali", "5" }, { "02", "Heksaloga", "6" }, { "03", "Yohanes Maria", "10" }, { "04", "Eren Yeager", "7" }, { "05", "Gimana Coba", "2" } };
-        double[][] dataGaji = { { 10000000.0, 150000.0 }, { 150000000.0, 250000.0 }, { 35000000.0, 245000.0 }, { 45000000.0, 300000.0 }, { 17000000.0, 270000.0 } };
+        String[][] dataID = {
+                { "01", "Ghazali Ahlam Jazali", "5" },
+                { "02", "Heksaloga", "6" },
+                { "03", "Yohanes Maria Vianney Nara Narwandaru", "10" },
+                { "04", "Eren Yeager", "7" },
+                { "05", "Gimana Coba", "2" }
+        };
+        double[][] dataGaji = {
+                { 10000000.0, 150000.0 },
+                { 150000000.0, 250000.0 },
+                { 35000000.0, 245000.0 },
+                { 45000000.0, 300000.0 },
+                { 17000000.0, 270000.0 } };
         // walau ini double, kita akan menggunakan primitive int untuk output
 
         while (true) {
