@@ -97,7 +97,7 @@ public class Program {
                         if (i >= 0) { //table value builder
                             System.out.print("| ");
                             int c = 0;
-                            for (int k = 0; k < dataID.length; k++) {
+                            for (int k = 0; k < dataID.length; k++) { //columnLength[0 to 2]: ID, NAMA LENGKAP, GOLONGAN
                                 System.out.print(dataID[i][c]);
                                 for (int j = 0; j < (columnLength[c] - dataID[i][c].length()); j++) {
                                     System.out.print(" ");
