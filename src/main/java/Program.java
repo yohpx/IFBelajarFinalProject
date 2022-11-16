@@ -95,15 +95,14 @@ public class Program {
                     for (int i = 0; i < dataColSize.length; i++) {
                         tableLength += dataColSize[i] + 2;
                     }
+
                     // MEMBUAT SEPARATOR ANTAR DATA KARYAWAN
-                    for (int i = 0; i < tableLength; i++) {
-                        if (i == 0 || i == tableLength - 1
-                                || i == 3 + dataColSize[0]
-                                || i == 3 + dataColSize[0] + 3 + dataColSize[1]
-                                || i == 3 + dataColSize[0] + 3 + dataColSize[1] + 3 + dataColSize[2]
-                                || i == 3 + dataColSize[0] + 3 + dataColSize[1] + 3 + dataColSize[2] + 3 + dataColSize[3]
-                        ) tableSeparator += "+";
-                        else tableSeparator += "-";
+                    for (int i = 0; i < dataColSize.length; i++) {
+                        tableSeparator += "+--";
+                        for (int k = 0; k < dataColSize[i]; k++) {
+                            tableSeparator += "-";
+                        }
+                        if (i == dataColSize.length - 1) tableSeparator += "+";
                     }
 
                     System.out.println(tableSeparator);
