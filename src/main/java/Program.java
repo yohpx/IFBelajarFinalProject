@@ -3,41 +3,41 @@ import java.util.Scanner;
 public class Program {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int jmlInput, pilMenu;
+        int pilMenu;
 
-        System.out.println("Silakan masukan data sebelum memulai program.");
-        System.out.print("Masukkan jumlah karyawan yang akan didata: "); jmlInput = Integer.parseInt(in.nextLine());
-        System.out.println("Menyiapkan data...");
-        String[][] dataID = new String[jmlInput][3]; //array String (Nama lengkap dan golongan)
-        double[][] dataGaji = new double[jmlInput][2]; //array double (Gaji pokok dan lembur)
+        //System.out.println("Silakan masukan data sebelum memulai program.");
+        //System.out.print("Masukkan jumlah karyawan yang akan didata: "); jmlInput = Integer.parseInt(in.nextLine());
+        //System.out.println("Menyiapkan data...");
+        //String[][] dataID = new String[jmlInput][3]; //array String (Nama lengkap dan golongan)
+        //double[][] dataGaji = new double[jmlInput][2]; //array double (Gaji pokok dan lembur)
+//
+        //// INPUT DATA
+        //for (int i = 0; i < dataID.length; i++) {
+        //    System.out.println("Input Data karyawan ke-" + (i+1) + ": ");
+        //    //Input data identitas dan golongan
+        //    System.out.print("/ Generated ID\t: " + (i+1)); dataID[i][0] = String.valueOf(i+1);
+        //    System.out.println();
+        //    System.out.print("/ Nama Lengkap\t: "); dataID[i][1] = in.nextLine();
+        //    System.out.print("/ Golongan\t\t: "); dataID[i][2] = in.nextLine();
+        //    //Input data gaji
+        //    System.out.print("$ Gaji pokok\t: "); dataGaji[i][0] = Integer.parseInt(in.nextLine());
+        //    System.out.print("$ Gaji Lembur\t: "); dataGaji[i][1] = Integer.parseInt(in.nextLine());
+        //    System.out.println();
+        //}
 
-        // INPUT DATA
-        for (int i = 0; i < dataID.length; i++) {
-            System.out.println("Input Data karyawan ke-" + (i+1) + ": ");
-            //Input data identitas dan golongan
-            System.out.print("/ Generated ID\t: " + (i+1)); dataID[i][0] = String.valueOf(i+1);
-            System.out.println();
-            System.out.print("/ Nama Lengkap\t: "); dataID[i][1] = in.nextLine();
-            System.out.print("/ Golongan\t\t: "); dataID[i][2] = in.nextLine();
-            //Input data gaji
-            System.out.print("$ Gaji pokok\t: "); dataGaji[i][0] = Integer.parseInt(in.nextLine());
-            System.out.print("$ Gaji Lembur\t: "); dataGaji[i][1] = Integer.parseInt(in.nextLine());
-            System.out.println();
-        }
-
-        //String[][] dataID = {
-        //        { "01", "Ghazali Ahlam Jazali", "5" },
-        //        { "02", "Heksaloga", "6" },
-        //        { "03", "Nicolaus Bayu", "10" },
-        //        { "04", "Eren Yeager", "7" },
-        //        { "05", "Gimana Coba", "2" }
-        //};
-        //double[][] dataGaji = {
-        //        { 10000000.0, 150000.0 },
-        //        { 150000000.0, 250000.0 },
-        //        { 35000000.0, 245000.0 },
-        //        { 45000000.0, 300000.0 },
-        //        { 17000000.0, 270000.0 } };
+        String[][] dataID = {
+                { "01", "Ghazali Ahlam Jazali", "5" },
+                { "02", "Heksaloga", "6" },
+                { "03", "Nicolaus Bayu", "10" },
+                { "04", "Eren Yeager", "7" },
+                { "05", "Gimana Coba", "2" }
+        };
+        double[][] dataGaji = {
+                { 10000000.0, 150000.0 },
+                { 150000000.0, 250000.0 },
+                { 35000000.0, 245000.0 },
+                { 45000000.0, 300000.0 },
+                { 17000000.0, 270000.0 } };
         // walau ini double, kita akan menggunakan primitive int untuk output
 
         while (true) {
@@ -58,7 +58,6 @@ public class Program {
                     System.out.println("DAFTAR KARYAWAN");
                     // COUNTING REQUIRED -
                     int[] dataColSize = {0, 0, 0, 0, 0};
-                    int tableLength;
                     String tableSeparator = "";
 
                     // COLUMN LENGTH DATA DIRI
@@ -92,14 +91,10 @@ public class Program {
                         }
                     }
 
-                    System.out.println("max UUID: " + dataColSize[0]);
-                    System.out.println("max NAME: " + dataColSize[1]);
-                    System.out.println("max GOLO: " + dataColSize[2]);
-                    System.out.println("max GAJP: " + dataColSize[3]);
-                    System.out.println("max GAJL: " + dataColSize[4]);
-                    System.out.println();
-
-                    tableLength = (dataColSize.length + 1) + (dataColSize[0] + 2) + (dataColSize[1] + 2) + (dataColSize[2] + 2) + (dataColSize[3] + 2) + (dataColSize[4] + 2);
+                    int tableLength = (dataColSize.length + 1);
+                    for (int i = 0; i < dataColSize.length; i++) {
+                        tableLength += dataColSize[i] + 2;
+                    }
                     // MEMBUAT SEPARATOR ANTAR DATA KARYAWAN
                     for (int i = 0; i < tableLength; i++) {
                         if (i == 0 || i == tableLength - 1
