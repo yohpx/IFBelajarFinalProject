@@ -91,11 +91,6 @@ public class Program {
                         }
                     }
 
-                    int tableLength = (dataColSize.length + 1);
-                    for (int i = 0; i < dataColSize.length; i++) {
-                        tableLength += dataColSize[i] + 2;
-                    }
-
                     // MEMBUAT SEPARATOR ANTAR DATA KARYAWAN
                     for (int i = 0; i < dataColSize.length; i++) {
                         tableSeparator += "+--";
