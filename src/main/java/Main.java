@@ -1,7 +1,14 @@
+/* PROGRAM PENGGAJIAN KARYAWAN PERUSAHAAN
+ * Proyek ini dibuat untuk pengajuan lomba antar kelas workshop IF Belajar 2022 USD.
+ * 
+ * Kontributor: Nara, Bayu, Stepanus
+ * Pembimbing: Heksa, Ghazali, Pieter
+ */
+
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) { // INISIASI METODE UTAMA
         Scanner in = new Scanner(System.in);
         int jmlInput, pilMenuUtama, pilModifData;
         double potongan = 0, totalGaji;
@@ -11,7 +18,9 @@ public class Main {
         System.out.println("Silakan masukan data sebelum memulai program.");
         System.out.print("Masukkan jumlah karyawan yang akan didata: ");
         jmlInput = Integer.parseInt(in.nextLine());
+        
         System.out.println("Menyiapkan data...");
+        // INISIASI VARIABEL ARRAY PENYIMPAN DATA KARYAWAN
         String[] dataID = new String[jmlInput];
         String[] dataNama = new String[jmlInput];
         int[] dataGolongan = new int[jmlInput];
@@ -19,6 +28,8 @@ public class Main {
         double[] dataUangLembur = new double[jmlInput];
         double[] dataGajiBersih = new double[jmlInput];
 
+        
+        // INPUT UNTUK SETIAP KARYAWAN PERUSAHAAN
         for (int i = 0; i < dataID.length; i++) {
             System.out.println("Input Data karyawan ke-" + (i+1) + ": ");
             //Input data identitas dan golongan
@@ -30,6 +41,7 @@ public class Main {
                 dataGolongan[i] = Integer.parseInt(in.nextLine());
                 if (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3)) System.out.println("Harap masukan golongan 1 sampai 3.");
             } while (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3));
+            
             //Input data gaji
             System.out.print("$ Gaji pokok\t: "); dataGajiPokok[i] = Integer.parseInt(in.nextLine());
             System.out.print("$ Uang lembur\t: "); dataUangLembur[i] = Integer.parseInt(in.nextLine());
@@ -43,7 +55,7 @@ public class Main {
             System.out.println();
         }
 
-        while (true) {
+        while (true) { // LOOP MENU UTAMA
             System.out.println("<MENU UTAMA>");
             System.out.println("[1] Daftar karyawan dan Gaji");
             System.out.println("[2] Modifikasi data karyawan");
@@ -104,42 +116,42 @@ public class Main {
                     for (int i = -1; i < dataID.length; i++) {
                         if (i >= 0) { //table value builder
                             System.out.print("| ");
-                            //OUTPUT ID
+                            //OUTPUT table ID
                             System.out.print(dataID[i]);
                             for (int j = 0; j < (dataColSize[0] - dataID[i].length()); j++) {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
 
-                            //OUTPUT NAMA LENGKAP
+                            //OUTPUT table NAMA LENGKAP
                             System.out.print(dataNama[i]);
                             for (int j = 0; j < (dataColSize[1] - dataNama[i].length()); j++) {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
 
-                            //OUTPUT GOLONGAN
+                            //OUTPUT table GOLONGAN
                             System.out.print((int) dataGolongan[i]);
                             for (int j = 0; j < (dataColSize[2] - String.valueOf((int) dataGolongan[i]).length()); j++) {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
 
-                            //OUTPUT GAJI POKOK
+                            //OUTPUT table GAJI POKOK
                             System.out.print((int) dataGajiPokok[i]);
                             for (int j = 0; j < (dataColSize[3] - String.valueOf((int) dataGajiPokok[i]).length()); j++) {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
 
-                            //OUTPUT GAJI LEMBUR
+                            //OUTPUT table GAJI LEMBUR
                             System.out.print((int) dataUangLembur[i]);
                             for (int j = 0; j < (dataColSize[4] - String.valueOf((int) dataUangLembur[i]).length()); j++) {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
 
-                            //OUTPUT GAJI BERSIH
+                            //OUTPUT table GAJI BERSIH
                             System.out.print((int) dataGajiBersih[i]);
                             for (int j = 0; j < (dataColSize[5] - String.valueOf((int) dataGajiBersih[i]).length()); j++) {
                                 System.out.print(" ");
@@ -162,7 +174,7 @@ public class Main {
                 }
                 case 2 -> {
                     boolean runMenuModif = true;
-                    while (runMenuModif) {
+                    while (runMenuModif) { // LOOP MENU MODIFIKASI DATA
                         System.out.println();
                         System.out.println("<MENU MODIFIKASI DATA> ");
                         System.out.println("[1] Mengubah gaji karyawan");
@@ -180,14 +192,14 @@ public class Main {
                             System.out.println("\n<MEMODIFIKASI DATA>");
                             System.out.print("ID yang ingin dimodifikasi: ");
                             indeks = Integer.parseInt(in.nextLine()) - 1;
-                            if (!(indeks >= 0 && indeks < dataID.length)) {
+                            if (!(indeks >= 0 && indeks < dataID.length)) { // validasi indeks yang dimasukan
                                 System.out.println("ID tidak valid! ID dapat dilihat dari menu utama.");
                                 continue;
                             }
                         }
 
                         switch (pilModifData) {
-                            case 1 -> {
+                            case 1 -> { // EDIT JUMLAH GAJI POKOK
                                 System.out.printf("Gaji ID %s (%s) sebelumnya adalah Rp.%,.2f\n", dataID[indeks], dataNama[indeks], dataGajiPokok[indeks]);
                                 System.out.print("Jumlah gaji pokok baru: Rp. ");
                                 ubahGaji = in.nextDouble();
@@ -196,7 +208,7 @@ public class Main {
                                 System.out.printf("Gaji pokok berhasil diperbarui menjadi Rp.%,.2f \n", dataGajiPokok[indeks]);
                                 continue;
                             }
-                            case 2 -> {
+                            case 2 -> { // TAMBAH UANG LEMBUR
                                 System.out.printf("Uang lembur ID %s (%s) sebelumnya adalah Rp.%,.2f\n", dataID[indeks], dataNama[indeks], dataUangLembur[indeks]);
                                 System.out.print("Jumlah tambahan uang lembur: Rp. ");
                                 uangLembur = in.nextDouble();
@@ -205,10 +217,10 @@ public class Main {
                                 System.out.printf("Uang lembur berhasil diperbarui menjadi Rp.%,.2f \n", dataUangLembur[indeks]);
                                 continue;
                             }
-                            case 3 -> {
+                            case 3 -> { // KEMBALI KE MENU UTAMA
                                 runMenuModif = false;
                             }
-                            default -> {
+                            default -> { // ERROR HANDLER
                                 System.out.println("Data tidak valid.");
                                 continue;
                             }
