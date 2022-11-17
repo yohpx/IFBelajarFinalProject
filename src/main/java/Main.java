@@ -8,39 +8,31 @@ public class Main {
 
         System.out.println("PROGRAM PENGGAJIAN KARYAWAN\n");
 
-        //System.out.println("Silakan masukan data sebelum memulai program.");
-        //System.out.print("Masukkan jumlah karyawan yang akan didata: ");
-        //jmlInput = Integer.parseInt(in.nextLine());
-        //System.out.println("Menyiapkan data...");
-        //String[] dataID = new String[jmlInput];
-        //String[] dataNama = new String[jmlInput];
-        //int[] dataGolongan = new int[jmlInput];
-        //double[] dataGajiPokok = new double[jmlInput];
-        //double[] dataGajiLembur = new double[jmlInput];
-        //double[] dataGajiBersih = new double[jmlInput];
-
-        String[] dataID = {"1", "2", "3", "4", "5"};
-        String[] dataNama = {"Nara Narwandaru", "Ghazali Ahlam Jazali", "Stepanus Deni", "Gabriel Bayu H.", "Heksaloga"};
-        int[] dataGolongan = {3, 2, 1, 2, 3};
-        double[] dataGajiPokok = {33000000.0, 27500000.0, 31400000.0, 31000000.0, 26400000.0};
-        double[] dataUangLembur = {250000.0, 250000.0, 500000.0, 750000.0, 250000.0};
-        double[] dataGajiBersih = new double[5];
-
+        System.out.println("Silakan masukan data sebelum memulai program.");
+        System.out.print("Masukkan jumlah karyawan yang akan didata: ");
+        jmlInput = Integer.parseInt(in.nextLine());
+        System.out.println("Menyiapkan data...");
+        String[] dataID = new String[jmlInput];
+        String[] dataNama = new String[jmlInput];
+        int[] dataGolongan = new int[jmlInput];
+        double[] dataGajiPokok = new double[jmlInput];
+        double[] dataUangLembur = new double[jmlInput];
+        double[] dataGajiBersih = new double[jmlInput];
 
         for (int i = 0; i < dataID.length; i++) {
-            //System.out.println("Input Data karyawan ke-" + (i+1) + ": ");
-            ////Input data identitas dan golongan
-            //System.out.print("/ Generated ID\t: " + (i+1)); dataID[i] = String.valueOf(i+1);
-            //System.out.println();
-            //System.out.print("? Nama Lengkap\t: "); dataNama[i] = in.nextLine();
-            //do {
-            //    System.out.print("? Golongan\t\t: ");
-            //    dataGolongan[i] = Integer.parseInt(in.nextLine());
-            //    if (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3)) System.out.println("Harap masukan golongan 1 sampai 3.");
-            //} while (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3));
-            ////Input data gaji
-            //System.out.print("$ Gaji pokok\t: "); dataGajiPokok[i] = Integer.parseInt(in.nextLine());
-            //System.out.print("$ Gaji lembur\t: "); dataGajiLembur[i] = Integer.parseInt(in.nextLine());
+            System.out.println("Input Data karyawan ke-" + (i+1) + ": ");
+            //Input data identitas dan golongan
+            System.out.print("/ Generated ID\t: " + (i+1)); dataID[i] = String.valueOf(i+1);
+            System.out.println();
+            System.out.print("? Nama Lengkap\t: "); dataNama[i] = in.nextLine();
+            do {
+                System.out.print("? Golongan\t\t: ");
+                dataGolongan[i] = Integer.parseInt(in.nextLine());
+                if (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3)) System.out.println("Harap masukan golongan 1 sampai 3.");
+            } while (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3));
+            //Input data gaji
+            System.out.print("$ Gaji pokok\t: "); dataGajiPokok[i] = Integer.parseInt(in.nextLine());
+            System.out.print("$ Uang lembur\t: "); dataUangLembur[i] = Integer.parseInt(in.nextLine());
             switch (dataGolongan[i]) {
                 case 1 -> {potongan = 0.05;}
                 case 2 -> {potongan = 0.1;}
@@ -48,8 +40,7 @@ public class Main {
             }
             totalGaji = dataGajiPokok[i] + dataUangLembur[i];
             dataGajiBersih[i] = totalGaji - (potongan * totalGaji);
-            //System.out.println();
-            //in.nextLine();
+            System.out.println();
         }
 
         while (true) {
@@ -116,7 +107,7 @@ public class Main {
                         if (i == dataColSize.length - 1) tableSeparator += "+";
                     }
                     System.out.println(tableSeparator);
-                    
+
                     // TABLE BUILDER
                     for (int i = -1; i < dataID.length; i++) {
                         if (i >= 0) { //table value builder
@@ -206,7 +197,7 @@ public class Main {
                         switch (pilModifData) {
                             case 1 -> {
                                 System.out.printf("Gaji ID %s (%s) sebelumnya adalah Rp.%,.2f\n", dataID[indeks], dataNama[indeks], dataGajiPokok[indeks]);
-                                System.out.print("Jumlah gaji baru: Rp. ");
+                                System.out.print("Jumlah gaji pokok baru: Rp. ");
                                 ubahGaji = in.nextDouble();
                                 in.nextLine();
                                 dataGajiPokok[indeks] = ubahGaji;
