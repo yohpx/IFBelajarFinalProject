@@ -13,14 +13,17 @@ public class Main {
         int jmlInput, pilMenuUtama, pilModifData;
         double potongan = 0, totalGaji;
 
-        System.out.println("PROGRAM PENGGAJIAN KARYAWAN\n");
+        System.out.println("[PROGRAM PENGGAJIAN KARYAWAN]\n");
 
         System.out.println("Silakan masukan data sebelum memulai program.");
-        System.out.print("Masukkan jumlah karyawan yang akan didata: ");
-        jmlInput = Integer.parseInt(in.nextLine());
+        do {
+            System.out.print("Masukkan jumlah karyawan yang akan didata: ");
+            jmlInput = Integer.parseInt(in.nextLine());
+            if (!(jmlInput > 0)) System.out.print("Harap masukan minimal 1. ");
+        } while (!(jmlInput > 0)); // verifikasi input golongan
         
-        System.out.println("Menyiapkan data...");
-        // INISIASI VARIABEL ARRAY PENYIMPAN DATA KARYAWAN
+        System.out.println("Menyiapkan data...\n");
+        // INISIALISASI VARIABEL ARRAY PENYIMPAN DATA KARYAWAN
         String[] dataID = new String[jmlInput];
         String[] dataNama = new String[jmlInput];
         int[] dataGolongan = new int[jmlInput];
@@ -28,7 +31,6 @@ public class Main {
         double[] dataUangLembur = new double[jmlInput];
         double[] dataGajiBersih = new double[jmlInput];
 
-        
         // INPUT UNTUK SETIAP KARYAWAN PERUSAHAAN
         for (int i = 0; i < dataID.length; i++) {
             System.out.println("Input Data karyawan ke-" + (i+1) + ": ");
@@ -40,7 +42,7 @@ public class Main {
                 System.out.print("? Golongan\t\t: ");
                 dataGolongan[i] = Integer.parseInt(in.nextLine());
                 if (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3)) System.out.println("Harap masukan golongan 1 sampai 3.");
-            } while (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3));
+            } while (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3)); // verifikasi input golongan
             
             //Input data gaji
             System.out.print("$ Gaji pokok\t: "); dataGajiPokok[i] = Integer.parseInt(in.nextLine());
@@ -64,7 +66,7 @@ public class Main {
             do {
                 System.out.print("Masukkan pilihan: "); pilMenuUtama = Integer.parseInt(in.nextLine());
                 if (!(pilMenuUtama >= 1 && pilMenuUtama <= 3)) System.out.print("Masukkan pilihan yang benar! ");
-            } while (!(pilMenuUtama >= 1 && pilMenuUtama <= 3));
+            } while (!(pilMenuUtama >= 1 && pilMenuUtama <= 3)); // verifikasi input pilihan
 
             switch (pilMenuUtama) {
                 case 1 -> { // DAFTAR KARYAWAN DAN GAJI
@@ -184,7 +186,7 @@ public class Main {
                             System.out.print("Masukkan pilihan: ");
                             pilModifData = Integer.parseInt(in.nextLine());// loop menu modifikasi data
                             if (!(pilModifData >= 1 && pilModifData <= 3)) System.out.print("Masukkan pilihan yang benar! ");
-                        } while (!(pilModifData >= 1 && pilModifData <= 3));
+                        } while (!(pilModifData >= 1 && pilModifData <= 3)); // verifikasi input pilihan
 
                         int indeks = 0;
                         double ubahGaji, uangLembur;
@@ -202,8 +204,7 @@ public class Main {
                             case 1 -> { // EDIT JUMLAH GAJI POKOK
                                 System.out.printf("Gaji ID %s (%s) sebelumnya adalah Rp.%,.2f\n", dataID[indeks], dataNama[indeks], dataGajiPokok[indeks]);
                                 System.out.print("Jumlah gaji pokok baru: Rp. ");
-                                ubahGaji = in.nextDouble();
-                                in.nextLine();
+                                ubahGaji = Double.parseDouble(in.nextLine());
                                 dataGajiPokok[indeks] = ubahGaji;
                                 System.out.printf("Gaji pokok berhasil diperbarui menjadi Rp.%,.2f \n", dataGajiPokok[indeks]);
                                 continue;
@@ -211,18 +212,13 @@ public class Main {
                             case 2 -> { // TAMBAH UANG LEMBUR
                                 System.out.printf("Uang lembur ID %s (%s) sebelumnya adalah Rp.%,.2f\n", dataID[indeks], dataNama[indeks], dataUangLembur[indeks]);
                                 System.out.print("Jumlah tambahan uang lembur: Rp. ");
-                                uangLembur = in.nextDouble();
-                                in.nextLine();
+                                uangLembur = Double.parseDouble(in.nextLine());
                                 dataUangLembur[indeks] += uangLembur;
                                 System.out.printf("Uang lembur berhasil diperbarui menjadi Rp.%,.2f \n", dataUangLembur[indeks]);
                                 continue;
                             }
                             case 3 -> { // KEMBALI KE MENU UTAMA
                                 runMenuModif = false;
-                            }
-                            default -> { // ERROR HANDLER
-                                System.out.println("Data tidak valid.");
-                                continue;
                             }
                         }
                         System.out.println();
