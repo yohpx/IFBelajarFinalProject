@@ -82,14 +82,6 @@ public class Main {
                             dataColSize[5] = String.valueOf(dataGajiBersih[i]).length();
                         }
                     }
-
-                    //System.out.println("max col[0] UUID: " + dataColSize[0]);
-                    //System.out.println("max col[1] NAMA: " + dataColSize[1]);
-                    //System.out.println("max col[2] GOLO: " + dataColSize[2]);
-                    //System.out.println("max col[3] GAJP: " + dataColSize[3]);
-                    //System.out.println("max col[4] GAJL: " + dataColSize[4]);
-                    //System.out.println("max col[5] GAJB: " + dataColSize[5]);
-
                     //COMPARING TO TABLE HEADER
                     String[] TABLE_HEADER = {"ID", "NAMA LENGKAP", "GOLONGAN", "GAJI POKOK (Rp)", "GAJI LEMBUR (Rp)", "GAJI BERSIH (Rp)"};
                     for (int i = 0; i < TABLE_HEADER.length; i++) {
