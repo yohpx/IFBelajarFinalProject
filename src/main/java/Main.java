@@ -116,7 +116,7 @@ public class Main {
                         if (i == dataColSize.length - 1) tableSeparator += "+";
                     }
                     System.out.println(tableSeparator);
-                    
+
                     // TABLE BUILDER
                     for (int i = -1; i < dataID.length; i++) {
                         if (i >= 0) { //table value builder
@@ -206,7 +206,7 @@ public class Main {
                         switch (pilModifData) {
                             case 1 -> {
                                 System.out.printf("Gaji ID %s (%s) sebelumnya adalah Rp.%,.2f\n", dataID[indeks], dataNama[indeks], dataGajiPokok[indeks]);
-                                System.out.print("Jumlah gaji baru: Rp. ");
+                                System.out.print("Jumlah gaji pokok baru: Rp. ");
                                 ubahGaji = in.nextDouble();
                                 in.nextLine();
                                 dataGajiPokok[indeks] = ubahGaji;
