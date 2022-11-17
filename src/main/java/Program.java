@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Program {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int pilMenu;
+        int jmlInput, pilMenu;
 
         //System.out.println("Silakan masukan data sebelum memulai program.");
         //System.out.print("Masukkan jumlah karyawan yang akan didata: "); jmlInput = Integer.parseInt(in.nextLine());
@@ -25,19 +25,8 @@ public class Program {
         //    System.out.println();
         //}
 
-        String[][] dataID = {
-                { "01", "Ghazali Ahlam Jazali", "5" },
-                { "02", "Heksaloga", "6" },
-                { "03", "Nicolaus Bayu", "10" },
-                { "04", "Eren Yeager", "7" },
-                { "05", "Gimana Coba", "2" }
-        };
-        double[][] dataGaji = {
-                { 10000000.0, 150000.0 },
-                { 150000000.0, 250000.0 },
-                { 35000000.0, 245000.0 },
-                { 45000000.0, 300000.0 },
-                { 17000000.0, 270000.0 } };
+        String[][] dataID = { { "01", "Ghazali Ahlam Jazali", "5" }, { "02", "Heksaloga", "6" }, { "03", "Nicolaus Bayu", "10" }, { "04", "Eren Yeager", "7" }, { "05", "Gimana Coba", "2" }};
+        double[][] dataGaji = {{ 10000000.0, 150000.0 }, { 150000000.0, 250000.0 }, { 35000000.0, 245000.0 }, { 45000000.0, 300000.0 }, { 17000000.0, 270000.0 }};
         // walau ini double, kita akan menggunakan primitive int untuk output
 
         while (true) {
@@ -49,7 +38,8 @@ public class Program {
 
             do {
                 System.out.print("Masukkan pilihan: ");
-                pilMenu = Integer.parseInt(in.nextLine());
+                //pilMenu = Integer.parseInt(in.nextLine());
+                pilMenu = in.nextInt();
                 if (!(pilMenu >= 1 && pilMenu <= 4)) System.out.print("Masukkan pilihan yang benar! ");
             } while (!(pilMenu >= 1 && pilMenu <= 4));
 
@@ -84,7 +74,7 @@ public class Program {
                     }
 
                     //COMPARING TO TABLE HEADER
-                    String[] TABLE_HEADER = {"ID", "NAMA LENGKAP", "GOLONGAN", "GAJI POKOK", "GAJI LEMBUR"};
+                    String[] TABLE_HEADER = {"ID", "NAMA LENGKAP", "GOLONGAN", "GAJI POKOK", "GAJI LEMBUR", "GAJI BERSIH"};
                     for (int i = 0; i < TABLE_HEADER.length; i++) {
                         if (TABLE_HEADER[i].length() > dataColSize[i]) {
                             dataColSize[i] = TABLE_HEADER[i].length();
