@@ -17,13 +17,13 @@ public class Main {
         double[] dataGajiLembur = new double[jmlInput];
         double[] dataGajiBersih = new double[jmlInput];
 
-        //String[] dataID = {"1", "2"};
-        //String[] dataNama = {"Nara Narwandaru", "Obama Bin Laden"};
-        //int[] dataGolongan = {3, 2};
-        //double[] dataGajiPokok = {30000000.0, 15000000.0};
-        //double[] dataGajiLembur = {3500000.0, 154000.0};
-        //double[] dataGajiBersih = new double[2];
-        //
+        //String[] dataID = {"1", "2", "3", "4", "5"};
+        //String[] dataNama = {"Nara Narwandaru", "Ghazali Ahlam Jazali", "Stepanus Deni", "Gabriel Bayu H.", "Heksaloga"};
+        //int[] dataGolongan = {3, 2, 1, 2, 3};
+        //double[] dataGajiPokok = {33000000.0, 27500000.0, 31400000.0, 31000000.0, 26400000.0};
+        //double[] dataGajiLembur = {250000.0, 250000.0, 500000.0, 750000.0, 250000.0};
+        //double[] dataGajiBersih = new double[5];
+
 
         for (int i = 0; i < dataID.length; i++) {
             System.out.println("Input Data karyawan ke-" + (i+1) + ": ");
@@ -74,7 +74,7 @@ public class Main {
                         }
                     }
                     for (int i = 0; i < dataNama.length; i++) { //NAMA LENGKAP
-                        if (dataID[i].length() > dataColSize[1]) {
+                        if (dataNama[i].length() > dataColSize[1]) {
                             dataColSize[1] = dataNama[i].length();
                         }
                     }
@@ -99,6 +99,13 @@ public class Main {
                         }
                     }
 
+                    System.out.println("max col[0] UUID: " + dataColSize[0]);
+                    System.out.println("max col[1] NAMA: " + dataColSize[1]);
+                    System.out.println("max col[2] GOLO: " + dataColSize[2]);
+                    System.out.println("max col[3] GAJP: " + dataColSize[3]);
+                    System.out.println("max col[4] GAJL: " + dataColSize[4]);
+                    System.out.println("max col[5] GAJB: " + dataColSize[5]);
+
                     //COMPARING TO TABLE HEADER
                     String[] TABLE_HEADER = {"ID", "NAMA LENGKAP", "GOLONGAN", "GAJI POKOK", "GAJI LEMBUR", "GAJI BERSIH"};
                     for (int i = 0; i < TABLE_HEADER.length; i++) {
@@ -119,9 +126,9 @@ public class Main {
                     for (int i = -1; i < dataID.length; i++) {
                         if (i >= 0) { //table value builder
                             System.out.print("| ");
-                            //OUTPUT GAJI
+                            //OUTPUT ID
                             System.out.print(dataID[i]);
-                            for (int j = 0; j < (dataColSize[0] - String.valueOf(dataID[i]).length()); j++) {
+                            for (int j = 0; j < (dataColSize[0] - dataID[i].length()); j++) {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
