@@ -26,7 +26,7 @@ public class Main {
         // INISIALISASI VARIABEL ARRAY PENYIMPAN DATA KARYAWAN
         String[] dataID = new String[jmlInput];
         String[] dataNama = new String[jmlInput];
-        int[] dataGolongan = new int[jmlInput];
+        byte[] dataGolongan = new byte[jmlInput];
         double[] dataGajiPokok = new double[jmlInput];
         double[] dataUangLembur = new double[jmlInput];
         double[] dataGajiBersih = new double[jmlInput];
@@ -40,7 +40,7 @@ public class Main {
             System.out.print("? Nama Lengkap\t\t: "); dataNama[i] = in.nextLine();
             do {
                 System.out.print("? Golongan (1/2/3)\t: ");
-                dataGolongan[i] = Integer.parseInt(in.nextLine());
+                dataGolongan[i] = Byte.parseByte(in.nextLine());
                 if (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3)) System.out.println("Harap masukan golongan 1 sampai 3.");
             } while (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3)); // verifikasi input golongan
             
@@ -83,8 +83,8 @@ public class Main {
                         if (dataNama[i].length() > dataColSize[1]) { //NAMA LENGKAP
                             dataColSize[1] = dataNama[i].length();
                         }
-                        if (String.valueOf((int) dataGolongan[i]).length() > dataColSize[2]) {
-                            dataColSize[2] = String.valueOf((int) dataGolongan[i]).length(); //GOLONGAN
+                        if (String.valueOf(dataGolongan[i]).length() > dataColSize[2]) {
+                            dataColSize[2] = String.valueOf(dataGolongan[i]).length(); //GOLONGAN
                         }
                         if (String.valueOf((int) dataGajiPokok[i]).length() > dataColSize[3]) {
                             dataColSize[3] = String.valueOf((int) dataGajiPokok[i]).length(); //GAJI POKOK
@@ -133,8 +133,8 @@ public class Main {
                             System.out.print(" | ");
 
                             //OUTPUT table GOLONGAN
-                            System.out.print((int) dataGolongan[i]);
-                            for (int j = 0; j < (dataColSize[2] - String.valueOf((int) dataGolongan[i]).length()); j++) {
+                            System.out.print(dataGolongan[i]);
+                            for (int j = 0; j < (dataColSize[2] - String.valueOf(dataGolongan[i]).length()); j++) {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
