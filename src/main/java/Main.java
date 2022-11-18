@@ -35,18 +35,18 @@ public class Main {
         for (int i = 0; i < dataID.length; i++) {
             System.out.println("Input Data karyawan ke-" + (i+1) + ": ");
             //Input data identitas dan golongan
-            System.out.print("/ Generated ID\t: " + (i+1)); dataID[i] = String.valueOf(i+1);
+            System.out.print("/ Generated ID\t\t: " + (i+1)); dataID[i] = String.valueOf(i+1);
             System.out.println();
-            System.out.print("? Nama Lengkap\t: "); dataNama[i] = in.nextLine();
+            System.out.print("? Nama Lengkap\t\t: "); dataNama[i] = in.nextLine();
             do {
-                System.out.print("? Golongan\t\t: ");
+                System.out.print("? Golongan (1/2/3)\t: ");
                 dataGolongan[i] = Integer.parseInt(in.nextLine());
                 if (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3)) System.out.println("Harap masukan golongan 1 sampai 3.");
             } while (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3)); // verifikasi input golongan
             
             //Input data gaji
-            System.out.print("$ Gaji pokok\t: "); dataGajiPokok[i] = Integer.parseInt(in.nextLine());
-            System.out.print("$ Uang lembur\t: "); dataUangLembur[i] = Integer.parseInt(in.nextLine());
+            System.out.print("$ Gaji pokok\t\t: Rp. "); dataGajiPokok[i] = Integer.parseInt(in.nextLine());
+            System.out.print("$ Uang lembur\t\t: Rp. "); dataUangLembur[i] = Integer.parseInt(in.nextLine());
             switch (dataGolongan[i]) {
                 case 1 -> {potongan = 0.05;}
                 case 2 -> {potongan = 0.1;}
@@ -83,17 +83,17 @@ public class Main {
                         if (dataNama[i].length() > dataColSize[1]) { //NAMA LENGKAP
                             dataColSize[1] = dataNama[i].length();
                         }
-                        if (dataID[i].length() > dataColSize[2]) {
-                            dataColSize[2] = String.valueOf(dataGolongan[i]).length(); //GOLONGAN
+                        if (String.valueOf((int) dataGolongan[i]).length() > dataColSize[2]) {
+                            dataColSize[2] = String.valueOf((int) dataGolongan[i]).length(); //GOLONGAN
                         }
-                        if (dataID[i].length() > dataColSize[3]) {
-                            dataColSize[3] = String.valueOf(dataGajiPokok[i]).length(); //GAJI POKOK
+                        if (String.valueOf((int) dataGajiPokok[i]).length() > dataColSize[3]) {
+                            dataColSize[3] = String.valueOf((int) dataGajiPokok[i]).length(); //GAJI POKOK
                         }
-                        if (dataID[i].length() > dataColSize[4]) { //GAJI LEMBUR
-                            dataColSize[4] = String.valueOf(dataUangLembur[i]).length();
+                        if (String.valueOf((int) dataUangLembur[i]).length() > dataColSize[4]) { //GAJI LEMBUR
+                            dataColSize[4] = String.valueOf((int) dataUangLembur[i]).length();
                         }
-                        if (dataID[i].length() > dataColSize[5]) { //GAJI BERSIH
-                            dataColSize[5] = String.valueOf(dataGajiBersih[i]).length();
+                        if (String.valueOf((int) dataGajiBersih[i]).length() > dataColSize[5]) { //GAJI BERSIH
+                            dataColSize[5] = String.valueOf((int) dataGajiBersih[i]).length();
                         }
                     }
                     //COMPARING TO TABLE HEADER
