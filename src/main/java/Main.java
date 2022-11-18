@@ -61,7 +61,7 @@ public class Main {
             System.out.println("<MENU UTAMA>");
             System.out.println("[1] Daftar karyawan dan Gaji");
             System.out.println("[2] Modifikasi data karyawan");
-            System.out.println("[3] Keluar");
+            System.out.println("[3] Keluar dari program");
 
             do {
                 System.out.print("Masukkan pilihan: "); pilMenuUtama = Integer.parseInt(in.nextLine());
@@ -72,7 +72,7 @@ public class Main {
                 case 1 -> { // DAFTAR KARYAWAN DAN GAJI
                     System.out.println("\n<DAFTAR KARYAWAN DAN GAJI>");
                     // COUNTING REQUIRED
-                    int[] dataColSize = {0, 0, 0, 0, 0, 0};
+                    int[] dataColSize = new int[6];
                     String tableSeparator = "";
 
                     // MENGHITUNG JUMLAH KARAKTER MAKSIMAL SETIAP ARRAY
