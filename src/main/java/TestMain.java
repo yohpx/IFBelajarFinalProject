@@ -71,6 +71,8 @@ public class TestMain {
                         if (String.valueOf((int) dataUangLembur[i]).length() > dataColSize[4]) { //GAJI LEMBUR
                             dataColSize[4] = String.valueOf((int) dataUangLembur[i]).length();
                         }
+                        totalGaji = dataGajiPokok[i] + dataUangLembur[i];
+                        dataGajiBersih[i] = totalGaji - (potongan * totalGaji);
                         if (String.valueOf((int) dataGajiBersih[i]).length() > dataColSize[5]) { //GAJI BERSIH
                             dataColSize[5] = String.valueOf((int) dataGajiBersih[i]).length();
                         }
