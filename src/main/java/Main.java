@@ -1,24 +1,30 @@
+/* PROGRAM PENGGAJIAN KARYAWAN PERUSAHAAN
+ * Proyek ini dibuat untuk pengajuan lomba antar kelas workshop IF Belajar 2022 USD.
+ *
+ * Kontributor: Nara, Bayu, Stepanus
+ * Pembimbing: Heksa, Ghazali, Pieter
+ */
+
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) { // INISIASI METODE UTAMA
         Scanner in = new Scanner(System.in);
         int jmlInput, pilMenuUtama, pilModifData;
         double potongan = 0, totalGaji;
 
-        System.out.println("PROGRAM PENGGAJIAN KARYAWAN\n");
+        System.out.println("[PROGRAM PENGGAJIAN KARYAWAN]\n");
 
         //System.out.println("Silakan masukan data sebelum memulai program.");
-        //System.out.print("Masukkan jumlah karyawan yang akan didata: ");
-        //jmlInput = Integer.parseInt(in.nextLine());
-        //System.out.println("Menyiapkan data...");
-        //String[] dataID = new String[jmlInput];
-        //String[] dataNama = new String[jmlInput];
-        //int[] dataGolongan = new int[jmlInput];
-        //double[] dataGajiPokok = new double[jmlInput];
-        //double[] dataGajiLembur = new double[jmlInput];
-        //double[] dataGajiBersih = new double[jmlInput];
+        //do {
+        //    System.out.print("Masukkan jumlah karyawan yang akan didata: ");
+        //    jmlInput = Integer.parseInt(in.nextLine());
+        //    if (!(jmlInput > 0)) System.out.print("Harap masukan minimal 1. ");
+        //} while (!(jmlInput > 0)); // verifikasi input golongan
 
+        System.out.println("Menyiapkan data...\n");
+        System.out.println("Menggunakan inisialisasi konstanta testing.\n");
+        // INISIALISASI VARIABEL ARRAY PENYIMPAN DATA KARYAWAN
         String[] dataID = {"1", "2", "3", "4", "5"};
         String[] dataNama = {"Nara Narwandaru", "Ghazali Ahlam Jazali", "Stepanus Deni", "Gabriel Bayu H.", "Heksaloga"};
         int[] dataGolongan = {3, 2, 1, 2, 3};
@@ -26,21 +32,22 @@ public class Main {
         double[] dataUangLembur = {250000.0, 250000.0, 500000.0, 750000.0, 250000.0};
         double[] dataGajiBersih = new double[5];
 
-
+        // INPUT UNTUK SETIAP KARYAWAN PERUSAHAAN
         for (int i = 0; i < dataID.length; i++) {
             //System.out.println("Input Data karyawan ke-" + (i+1) + ": ");
-            ////Input data identitas dan golongan
-            //System.out.print("/ Generated ID\t: " + (i+1)); dataID[i] = String.valueOf(i+1);
+            //Input data identitas dan golongan
+            //System.out.print("/ Generated ID\t\t: " + (i+1)); dataID[i] = String.valueOf(i+1);
             //System.out.println();
-            //System.out.print("? Nama Lengkap\t: "); dataNama[i] = in.nextLine();
+            //System.out.print("? Nama Lengkap\t\t: "); dataNama[i] = in.nextLine();
             //do {
-            //    System.out.print("? Golongan\t\t: ");
-            //    dataGolongan[i] = Integer.parseInt(in.nextLine());
+            //    System.out.print("? Golongan (1/2/3)\t: ");
+            //    dataGolongan[i] = Byte.parseByte(in.nextLine());
             //    if (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3)) System.out.println("Harap masukan golongan 1 sampai 3.");
-            //} while (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3));
-            ////Input data gaji
-            //System.out.print("$ Gaji pokok\t: "); dataGajiPokok[i] = Integer.parseInt(in.nextLine());
-            //System.out.print("$ Gaji lembur\t: "); dataGajiLembur[i] = Integer.parseInt(in.nextLine());
+            //} while (!(dataGolongan[i] >= 1 && dataGolongan[i] <= 3)); // verifikasi input golongan
+
+            //Input data gaji
+            //System.out.print("$ Gaji pokok\t\t: Rp. "); dataGajiPokok[i] = Integer.parseInt(in.nextLine());
+            //System.out.print("$ Uang lembur\t\t: Rp. "); dataUangLembur[i] = Integer.parseInt(in.nextLine());
             switch (dataGolongan[i]) {
                 case 1 -> {potongan = 0.05;}
                 case 2 -> {potongan = 0.1;}
@@ -48,11 +55,13 @@ public class Main {
             }
             totalGaji = dataGajiPokok[i] + dataUangLembur[i];
             dataGajiBersih[i] = totalGaji - (potongan * totalGaji);
-            //System.out.println();
-            //in.nextLine();
         }
 
-        while (true) {
+        //dataID[2] = "100";
+        //System.out.println(dataID[1] + " - " + dataNama[0]);
+        //System.out.println();
+
+        while (true) { // LOOP MENU UTAMA
             System.out.println("<MENU UTAMA>");
             System.out.println("[1] Daftar karyawan dan Gaji");
             System.out.println("[2] Modifikasi data karyawan");
@@ -61,7 +70,7 @@ public class Main {
             do {
                 System.out.print("Masukkan pilihan: "); pilMenuUtama = Integer.parseInt(in.nextLine());
                 if (!(pilMenuUtama >= 1 && pilMenuUtama <= 3)) System.out.print("Masukkan pilihan yang benar! ");
-            } while (!(pilMenuUtama >= 1 && pilMenuUtama <= 3));
+            } while (!(pilMenuUtama >= 1 && pilMenuUtama <= 3)); // verifikasi input pilihan
 
             switch (pilMenuUtama) {
                 case 1 -> { // DAFTAR KARYAWAN DAN GAJI
@@ -78,27 +87,19 @@ public class Main {
                         if (dataNama[i].length() > dataColSize[1]) { //NAMA LENGKAP
                             dataColSize[1] = dataNama[i].length();
                         }
-                        if (dataID[i].length() > dataColSize[2]) {
+                        if (String.valueOf(dataGolongan[i]).length() > dataColSize[2]) {
                             dataColSize[2] = String.valueOf(dataGolongan[i]).length(); //GOLONGAN
                         }
-                        if (dataID[i].length() > dataColSize[3]) {
-                            dataColSize[3] = String.valueOf(dataGajiPokok[i]).length(); //GAJI POKOK
+                        if (String.valueOf((int) dataGajiPokok[i]).length() > dataColSize[3]) {
+                            dataColSize[3] = String.valueOf((int) dataGajiPokok[i]).length(); //GAJI POKOK
                         }
-                        if (dataID[i].length() > dataColSize[4]) { //GAJI LEMBUR
-                            dataColSize[4] = String.valueOf(dataUangLembur[i]).length();
+                        if (String.valueOf((int) dataUangLembur[i]).length() > dataColSize[4]) { //GAJI LEMBUR
+                            dataColSize[4] = String.valueOf((int) dataUangLembur[i]).length();
                         }
-                        if (dataID[i].length() > dataColSize[5]) { //GAJI BERSIH
-                            dataColSize[5] = String.valueOf(dataGajiBersih[i]).length();
+                        if (String.valueOf((int) dataGajiBersih[i]).length() > dataColSize[5]) { //GAJI BERSIH
+                            dataColSize[5] = String.valueOf((int) dataGajiBersih[i]).length();
                         }
                     }
-
-                    //System.out.println("max col[0] UUID: " + dataColSize[0]);
-                    //System.out.println("max col[1] NAMA: " + dataColSize[1]);
-                    //System.out.println("max col[2] GOLO: " + dataColSize[2]);
-                    //System.out.println("max col[3] GAJP: " + dataColSize[3]);
-                    //System.out.println("max col[4] GAJL: " + dataColSize[4]);
-                    //System.out.println("max col[5] GAJB: " + dataColSize[5]);
-
                     //COMPARING TO TABLE HEADER
                     String[] TABLE_HEADER = {"ID", "NAMA LENGKAP", "GOLONGAN", "GAJI POKOK (Rp)", "GAJI LEMBUR (Rp)", "GAJI BERSIH (Rp)"};
                     for (int i = 0; i < TABLE_HEADER.length; i++) {
@@ -121,42 +122,42 @@ public class Main {
                     for (int i = -1; i < dataID.length; i++) {
                         if (i >= 0) { //table value builder
                             System.out.print("| ");
-                            //OUTPUT ID
+                            //OUTPUT table ID
                             System.out.print(dataID[i]);
                             for (int j = 0; j < (dataColSize[0] - dataID[i].length()); j++) {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
 
-                            //OUTPUT NAMA LENGKAP
+                            //OUTPUT table NAMA LENGKAP
                             System.out.print(dataNama[i]);
                             for (int j = 0; j < (dataColSize[1] - dataNama[i].length()); j++) {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
 
-                            //OUTPUT GOLONGAN
-                            System.out.print((int) dataGolongan[i]);
-                            for (int j = 0; j < (dataColSize[2] - String.valueOf((int) dataGolongan[i]).length()); j++) {
+                            //OUTPUT table GOLONGAN
+                            System.out.print(dataGolongan[i]);
+                            for (int j = 0; j < (dataColSize[2] - String.valueOf(dataGolongan[i]).length()); j++) {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
 
-                            //OUTPUT GAJI POKOK
+                            //OUTPUT table GAJI POKOK
                             System.out.print((int) dataGajiPokok[i]);
                             for (int j = 0; j < (dataColSize[3] - String.valueOf((int) dataGajiPokok[i]).length()); j++) {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
 
-                            //OUTPUT GAJI LEMBUR
+                            //OUTPUT table GAJI LEMBUR
                             System.out.print((int) dataUangLembur[i]);
                             for (int j = 0; j < (dataColSize[4] - String.valueOf((int) dataUangLembur[i]).length()); j++) {
                                 System.out.print(" ");
                             }
                             System.out.print(" | ");
 
-                            //OUTPUT GAJI BERSIH
+                            //OUTPUT table GAJI BERSIH
                             System.out.print((int) dataGajiBersih[i]);
                             for (int j = 0; j < (dataColSize[5] - String.valueOf((int) dataGajiBersih[i]).length()); j++) {
                                 System.out.print(" ");
@@ -179,7 +180,7 @@ public class Main {
                 }
                 case 2 -> {
                     boolean runMenuModif = true;
-                    while (runMenuModif) {
+                    while (runMenuModif) { // LOOP MENU MODIFIKASI DATA
                         System.out.println();
                         System.out.println("<MENU MODIFIKASI DATA> ");
                         System.out.println("[1] Mengubah gaji karyawan");
@@ -189,7 +190,7 @@ public class Main {
                             System.out.print("Masukkan pilihan: ");
                             pilModifData = Integer.parseInt(in.nextLine());// loop menu modifikasi data
                             if (!(pilModifData >= 1 && pilModifData <= 3)) System.out.print("Masukkan pilihan yang benar! ");
-                        } while (!(pilModifData >= 1 && pilModifData <= 3));
+                        } while (!(pilModifData >= 1 && pilModifData <= 3)); // verifikasi input pilihan
 
                         int indeks = 0;
                         double ubahGaji, uangLembur;
@@ -197,37 +198,31 @@ public class Main {
                             System.out.println("\n<MEMODIFIKASI DATA>");
                             System.out.print("ID yang ingin dimodifikasi: ");
                             indeks = Integer.parseInt(in.nextLine()) - 1;
-                            if (!(indeks >= 0 && indeks < dataID.length)) {
+                            if (!(indeks >= 0 && indeks < dataID.length)) { // validasi indeks yang dimasukan
                                 System.out.println("ID tidak valid! ID dapat dilihat dari menu utama.");
                                 continue;
                             }
                         }
 
                         switch (pilModifData) {
-                            case 1 -> {
+                            case 1 -> { // EDIT JUMLAH GAJI POKOK
                                 System.out.printf("Gaji ID %s (%s) sebelumnya adalah Rp.%,.2f\n", dataID[indeks], dataNama[indeks], dataGajiPokok[indeks]);
                                 System.out.print("Jumlah gaji pokok baru: Rp. ");
-                                ubahGaji = in.nextDouble();
-                                in.nextLine();
+                                ubahGaji = Double.parseDouble(in.nextLine());
                                 dataGajiPokok[indeks] = ubahGaji;
                                 System.out.printf("Gaji pokok berhasil diperbarui menjadi Rp.%,.2f \n", dataGajiPokok[indeks]);
                                 continue;
                             }
-                            case 2 -> {
+                            case 2 -> { // TAMBAH UANG LEMBUR
                                 System.out.printf("Uang lembur ID %s (%s) sebelumnya adalah Rp.%,.2f\n", dataID[indeks], dataNama[indeks], dataUangLembur[indeks]);
                                 System.out.print("Jumlah tambahan uang lembur: Rp. ");
-                                uangLembur = in.nextDouble();
-                                in.nextLine();
+                                uangLembur = Double.parseDouble(in.nextLine());
                                 dataUangLembur[indeks] += uangLembur;
                                 System.out.printf("Uang lembur berhasil diperbarui menjadi Rp.%,.2f \n", dataUangLembur[indeks]);
                                 continue;
                             }
-                            case 3 -> {
+                            case 3 -> { // KEMBALI KE MENU UTAMA
                                 runMenuModif = false;
-                            }
-                            default -> {
-                                System.out.println("Data tidak valid.");
-                                continue;
                             }
                         }
                         System.out.println();
