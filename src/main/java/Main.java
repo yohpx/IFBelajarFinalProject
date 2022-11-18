@@ -65,7 +65,7 @@ public class Main {
             System.out.println("<MENU UTAMA>");
             System.out.println("[1] Daftar karyawan dan Gaji");
             System.out.println("[2] Modifikasi data karyawan");
-            System.out.println("[3] Keluar");
+            System.out.println("[3] Keluar dari program");
 
             do {
                 System.out.print("Masukkan pilihan: "); pilMenuUtama = Integer.parseInt(in.nextLine());
