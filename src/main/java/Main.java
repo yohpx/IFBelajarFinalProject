@@ -76,7 +76,7 @@ public class Main {
                 case 1 -> { // DAFTAR KARYAWAN DAN GAJI
                     System.out.println("\n<DAFTAR KARYAWAN DAN GAJI>");
                     // COUNTING REQUIRED
-                    int[] dataColSize = {0, 0, 0, 0, 0, 0};
+                    int[] dataColSize = new int[6];
                     String tableSeparator = "";
 
                     // MENGHITUNG JUMLAH KARAKTER MAKSIMAL SETIAP ARRAY
