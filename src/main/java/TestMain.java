@@ -1,0 +1,213 @@
+/* TEST PROGRAM PENGGAJIAN KARYAWAN PERUSAHAAN
+ * Proyek ini dibuat untuk pengajuan lomba antar kelas workshop IF Belajar 2022 USD.
+ * Test ini dijalankan dengan inisialisasi variabel awal yang sudah diset untuk memudahkan penguji.
+ * Kontributor: Nara, Bayu, Stepanus
+ * Pembimbing: Heksa, Ghazali, Pieter
+ */
+
+import java.util.Scanner;
+
+public class TestMain {
+    public static void main(String[] args) { // INISIASI METODE UTAMA
+        Scanner in = new Scanner(System.in);
+        int pilMenuUtama, pilModifData;
+        double potongan = 0, totalGaji;
+
+        System.out.println("[PROGRAM PENGGAJIAN KARYAWAN]\n");
+
+        System.out.println("Menyiapkan data...\n");
+        System.out.println("Menggunakan inisialisasi konstanta testing.\n");
+        // INISIALISASI VARIABEL ARRAY PENYIMPAN DATA KARYAWAN
+        String[] dataID = {"1", "2", "3", "4", "5"};
+        String[] dataNama = {"Nara Narwandaru", "Ghazali Ahlam Jazali", "Stepanus Deni", "Gabriel Bayu H.", "Heksaloga"};
+        int[] dataGolongan = {3, 2, 1, 2, 3};
+        double[] dataGajiPokok = {33000000.0, 27500000.0, 31400000.0, 31000000.0, 26400000.0};
+        double[] dataUangLembur = {250000.0, 250000.0, 500000.0, 750000.0, 250000.0};
+        double[] dataGajiBersih = new double[5];
+
+        // INPUT UNTUK SETIAP KARYAWAN PERUSAHAAN
+        for (int i = 0; i < dataID.length; i++) {
+            switch (dataGolongan[i]) {
+                case 1 -> {potongan = 0.05;}
+                case 2 -> {potongan = 0.1;}
+                case 3 -> {potongan = 0.15;}
+            }
+            totalGaji = dataGajiPokok[i] + dataUangLembur[i];
+            dataGajiBersih[i] = totalGaji - (potongan * totalGaji);
+        }
+
+        while (true) { // LOOP MENU UTAMA
+            System.out.println("<MENU UTAMA>");
+            System.out.println("[1] Daftar karyawan dan Gaji");
+            System.out.println("[2] Modifikasi data karyawan");
+            System.out.println("[3] Keluar dari program");
+
+            do {
+                System.out.print("Masukkan pilihan: "); pilMenuUtama = Integer.parseInt(in.nextLine());
+                if (!(pilMenuUtama >= 1 && pilMenuUtama <= 3)) System.out.print("Masukkan pilihan yang benar! ");
+            } while (!(pilMenuUtama >= 1 && pilMenuUtama <= 3)); // verifikasi input pilihan
+
+            switch (pilMenuUtama) {
+                case 1 -> { // DAFTAR KARYAWAN DAN GAJI
+                    System.out.println("\n<DAFTAR KARYAWAN DAN GAJI>");
+                    // COUNTING REQUIRED
+                    int[] dataColSize = new int[6];
+                    String tableSeparator = "";
+
+                    // MENGHITUNG JUMLAH KARAKTER MAKSIMAL SETIAP ARRAY
+                    for (int i = 0; i < dataID.length; i++) {
+                        if (dataID[i].length() > dataColSize[0]) { //ID
+                            dataColSize[0] = dataID[i].length();
+                        }
+                        if (dataNama[i].length() > dataColSize[1]) { //NAMA LENGKAP
+                            dataColSize[1] = dataNama[i].length();
+                        }
+                        if (String.valueOf(dataGolongan[i]).length() > dataColSize[2]) {
+                            dataColSize[2] = String.valueOf(dataGolongan[i]).length(); //GOLONGAN
+                        }
+                        if (String.valueOf((int) dataGajiPokok[i]).length() > dataColSize[3]) {
+                            dataColSize[3] = String.valueOf((int) dataGajiPokok[i]).length(); //GAJI POKOK
+                        }
+                        if (String.valueOf((int) dataUangLembur[i]).length() > dataColSize[4]) { //GAJI LEMBUR
+                            dataColSize[4] = String.valueOf((int) dataUangLembur[i]).length();
+                        }
+                        if (String.valueOf((int) dataGajiBersih[i]).length() > dataColSize[5]) { //GAJI BERSIH
+                            dataColSize[5] = String.valueOf((int) dataGajiBersih[i]).length();
+                        }
+                    }
+                    //COMPARING TO TABLE HEADER
+                    String[] TABLE_HEADER = {"ID", "NAMA LENGKAP", "GOLONGAN", "GAJI POKOK (Rp)", "GAJI LEMBUR (Rp)", "GAJI BERSIH (Rp)"};
+                    for (int i = 0; i < TABLE_HEADER.length; i++) {
+                        if (TABLE_HEADER[i].length() > dataColSize[i]) {
+                            dataColSize[i] = TABLE_HEADER[i].length();
+                        }
+                    }
+
+                    // MEMBUAT SEPARATOR ANTAR DATA KARYAWAN
+                    for (int i = 0; i < dataColSize.length; i++) {
+                        tableSeparator += "+--";
+                        for (int k = 0; k < dataColSize[i]; k++) {
+                            tableSeparator += "-";
+                        }
+                        if (i == dataColSize.length - 1) tableSeparator += "+";
+                    }
+                    System.out.println(tableSeparator);
+
+                    // TABLE BUILDER
+                    for (int i = -1; i < dataID.length; i++) {
+                        if (i >= 0) { //table value builder
+                            System.out.print("| ");
+                            //OUTPUT table ID
+                            System.out.print(dataID[i]);
+                            for (int j = 0; j < (dataColSize[0] - dataID[i].length()); j++) {
+                                System.out.print(" ");
+                            }
+                            System.out.print(" | ");
+
+                            //OUTPUT table NAMA LENGKAP
+                            System.out.print(dataNama[i]);
+                            for (int j = 0; j < (dataColSize[1] - dataNama[i].length()); j++) {
+                                System.out.print(" ");
+                            }
+                            System.out.print(" | ");
+
+                            //OUTPUT table GOLONGAN
+                            System.out.print(dataGolongan[i]);
+                            for (int j = 0; j < (dataColSize[2] - String.valueOf(dataGolongan[i]).length()); j++) {
+                                System.out.print(" ");
+                            }
+                            System.out.print(" | ");
+
+                            //OUTPUT table GAJI POKOK
+                            System.out.print((int) dataGajiPokok[i]);
+                            for (int j = 0; j < (dataColSize[3] - String.valueOf((int) dataGajiPokok[i]).length()); j++) {
+                                System.out.print(" ");
+                            }
+                            System.out.print(" | ");
+
+                            //OUTPUT table GAJI LEMBUR
+                            System.out.print((int) dataUangLembur[i]);
+                            for (int j = 0; j < (dataColSize[4] - String.valueOf((int) dataUangLembur[i]).length()); j++) {
+                                System.out.print(" ");
+                            }
+                            System.out.print(" | ");
+
+                            //OUTPUT table GAJI BERSIH
+                            System.out.print((int) dataGajiBersih[i]);
+                            for (int j = 0; j < (dataColSize[5] - String.valueOf((int) dataGajiBersih[i]).length()); j++) {
+                                System.out.print(" ");
+                            }
+                            System.out.print(" | ");
+                        }
+                        else { //table header builder
+                            for (int b = 0; b < TABLE_HEADER.length; b++) {
+                                if (!(b == 0)) System.out.print(TABLE_HEADER[b]);
+                                else System.out.print("| " + TABLE_HEADER[b]);
+                                for (int j = 0; j < (dataColSize[b] - TABLE_HEADER[b].length()); j++) {
+                                    System.out.print(" ");
+                                }
+                                System.out.print(" | ");
+                            }
+                        }
+                        System.out.println("\n" + tableSeparator); //newline
+                    }
+                    System.out.println();
+                }
+                case 2 -> {
+                    boolean runMenuModif = true;
+                    while (runMenuModif) { // LOOP MENU MODIFIKASI DATA
+                        System.out.println();
+                        System.out.println("<MENU MODIFIKASI DATA> ");
+                        System.out.println("[1] Mengubah gaji karyawan");
+                        System.out.println("[2] Menambah uang lembur");
+                        System.out.println("[3] Kembali ke menu utama");
+                        do {
+                            System.out.print("Masukkan pilihan: ");
+                            pilModifData = Integer.parseInt(in.nextLine());// loop menu modifikasi data
+                            if (!(pilModifData >= 1 && pilModifData <= 3)) System.out.print("Masukkan pilihan yang benar! ");
+                        } while (!(pilModifData >= 1 && pilModifData <= 3)); // verifikasi input pilihan
+
+                        int indeks = 0;
+                        double ubahGaji, uangLembur;
+                        if (pilModifData == 1 || pilModifData == 2) {
+                            System.out.println("\n<MEMODIFIKASI DATA>");
+                            System.out.print("ID yang ingin dimodifikasi: ");
+                            indeks = Integer.parseInt(in.nextLine()) - 1;
+                            if (!(indeks >= 0 && indeks < dataID.length)) { // validasi indeks yang dimasukan
+                                System.out.println("ID tidak valid! ID dapat dilihat dari menu utama.");
+                                continue;
+                            }
+                        }
+
+                        switch (pilModifData) {
+                            case 1 -> { // EDIT JUMLAH GAJI POKOK
+                                System.out.printf("Gaji ID %s (%s) sebelumnya adalah Rp.%,.2f\n", dataID[indeks], dataNama[indeks], dataGajiPokok[indeks]);
+                                System.out.print("Jumlah gaji pokok baru: Rp. ");
+                                ubahGaji = Double.parseDouble(in.nextLine());
+                                dataGajiPokok[indeks] = ubahGaji;
+                                System.out.printf("Gaji pokok berhasil diperbarui menjadi Rp.%,.2f \n", dataGajiPokok[indeks]);
+                                continue;
+                            }
+                            case 2 -> { // TAMBAH UANG LEMBUR
+                                System.out.printf("Uang lembur ID %s (%s) sebelumnya adalah Rp.%,.2f\n", dataID[indeks], dataNama[indeks], dataUangLembur[indeks]);
+                                System.out.print("Jumlah tambahan uang lembur: Rp. ");
+                                uangLembur = Double.parseDouble(in.nextLine());
+                                dataUangLembur[indeks] += uangLembur;
+                                System.out.printf("Uang lembur berhasil diperbarui menjadi Rp.%,.2f \n", dataUangLembur[indeks]);
+                                continue;
+                            }
+                            case 3 -> { // KEMBALI KE MENU UTAMA
+                                runMenuModif = false;
+                            }
+                        }
+                        System.out.println();
+                    }
+                }
+                case 3 -> {
+                    System.out.println("\nTerima kasih telah menggunakan program ini.");
+                    System.exit(0);
+                }
+            }
+        }
+    }
+}
