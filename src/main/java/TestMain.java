@@ -71,6 +71,11 @@ public class TestMain {
                         if (String.valueOf((int) dataUangLembur[i]).length() > dataColSize[4]) { //GAJI LEMBUR
                             dataColSize[4] = String.valueOf((int) dataUangLembur[i]).length();
                         }
+                        switch (dataGolongan[i]) {
+                            case 1 -> {potongan = 0.05;}
+                            case 2 -> {potongan = 0.1;}
+                            case 3 -> {potongan = 0.15;}
+                        }
                         // hitung gaji bersih yang baru
                         totalGaji = dataGajiPokok[i] + dataUangLembur[i];
                         dataGajiBersih[i] = totalGaji - (potongan * totalGaji);
