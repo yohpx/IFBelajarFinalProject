@@ -47,13 +47,6 @@ public class Main {
             //Input data gaji
             System.out.print("$ Gaji pokok\t\t: Rp. "); dataGajiPokok[i] = Integer.parseInt(in.nextLine());
             System.out.print("$ Uang lembur\t\t: Rp. "); dataUangLembur[i] = Integer.parseInt(in.nextLine());
-            switch (dataGolongan[i]) {
-                case 1 -> {potongan = 0.05;}
-                case 2 -> {potongan = 0.1;}
-                case 3 -> {potongan = 0.15;}
-            }
-            totalGaji = dataGajiPokok[i] + dataUangLembur[i];
-            dataGajiBersih[i] = totalGaji - (potongan * totalGaji);
             System.out.println();
         }
 
@@ -92,7 +85,7 @@ public class Main {
                         if (String.valueOf((int) dataUangLembur[i]).length() > dataColSize[4]) { //GAJI LEMBUR
                             dataColSize[4] = String.valueOf((int) dataUangLembur[i]).length();
                         }
-                        switch (dataGolongan[i]) {
+                        switch (dataGolongan[i]) { // update data gaji bersih
                             case 1 -> {potongan = 0.05;}
                             case 2 -> {potongan = 0.1;}
                             case 3 -> {potongan = 0.15;}

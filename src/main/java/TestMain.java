@@ -25,17 +25,6 @@ public class TestMain {
         double[] dataUangLembur = {250000.0, 250000.0, 500000.0, 750000.0, 250000.0};
         double[] dataGajiBersih = new double[5];
 
-        // INPUT UNTUK SETIAP KARYAWAN PERUSAHAAN
-        for (int i = 0; i < dataID.length; i++) {
-            switch (dataGolongan[i]) {
-                case 1 -> {potongan = 0.05;}
-                case 2 -> {potongan = 0.1;}
-                case 3 -> {potongan = 0.15;}
-            }
-            totalGaji = dataGajiPokok[i] + dataUangLembur[i];
-            dataGajiBersih[i] = totalGaji - (potongan * totalGaji);
-        }
-
         while (true) { // LOOP MENU UTAMA
             System.out.println("<MENU UTAMA>");
             System.out.println("[1] Daftar karyawan dan Gaji");
@@ -71,7 +60,7 @@ public class TestMain {
                         if (String.valueOf((int) dataUangLembur[i]).length() > dataColSize[4]) { //GAJI LEMBUR
                             dataColSize[4] = String.valueOf((int) dataUangLembur[i]).length();
                         }
-                        switch (dataGolongan[i]) {
+                        switch (dataGolongan[i]) { // update data gaji bersih
                             case 1 -> {potongan = 0.05;}
                             case 2 -> {potongan = 0.1;}
                             case 3 -> {potongan = 0.15;}
